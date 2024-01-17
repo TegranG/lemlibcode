@@ -226,19 +226,9 @@ void competition_initialize() { //preauton
 
 
 void autonomous() {
-     while (true) {
-            // print robot location to the brain screen
-            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            // log position telemetry
-            lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
-            // delay to save resources
-            pros::delay(50);
-        }
     // example movement: Move to x: 20 and y: 15, and face heading 90. Timeout set to 4000 ms
-    // chassis.moveToPose(20, 15, 90, 4000);
-    // pros::lcd::print(4, "pure pursuit finished!");
+    chassis.moveToPose(20, 15, 90, 4000);
+    pros::lcd::print(4, "pure pursuit finished!");
 }
 
 
