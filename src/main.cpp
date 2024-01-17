@@ -264,22 +264,17 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	
-
+    // controller
+    // loop to continuously update motors
+    while (true) {
         // get joystick positions
- //while (true) {
-        // while(1) {
-        // // Retrieve the necessary joystick values
-        // int leftY = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        // int rightX = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
-        
-        // // Move the left side of the robot
-        // leftSide.move(leftY + rightX);
-        
-        // // Move the right side of the robot 
-        // rightSide.move(leftY - rightX);
-        // pros::delay(20);
-    //}
+        int leftY = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        int rightX = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+        // move the chassis with curvature drive
+        chassis.arcade(leftY, rightX);
+        // delay to save resources
+        pros::delay(10);
+    }
 }
 
 
