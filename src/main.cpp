@@ -141,7 +141,7 @@ void screen() {
 }
  
 void initialize() {
-    //pros::lcd::initialize(); // initialize brain screen
+    pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
 
     // the default rate is 50. however, if you need to change the rate, you
@@ -153,19 +153,17 @@ void initialize() {
     // works, refer to the fmtlib docs
 
     // thread to for brain screen and position logging
-    // pros::Task screenTask([&]() {
-    //     lemlib::Pose pose(0, 0, 0);
-    //     while (true) {
-    //         // print robot location to the brain screen
-    //         pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-    //         pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-    //         pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-    //         // log position telemetry
-    //         lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
-    //         // delay to save resources
-    //         pros::delay(50);
-    //     }
-    // });
+        lemlib::Pose pose(0, 0, 0);
+        while (true) {
+            // print robot location to the brain screen
+            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            // log position telemetry
+            lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
+            // delay to save resources
+            pros::delay(50);
+        }
 }
 
 
@@ -234,10 +232,21 @@ void competition_initialize() { //preauton
  * from where it left off.
  */
 
+
 void autonomous() {
+     while (true) {
+            // print robot location to the brain screen
+            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            // log position telemetry
+            lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
+            // delay to save resources
+            pros::delay(50);
+        }
     // example movement: Move to x: 20 and y: 15, and face heading 90. Timeout set to 4000 ms
-    chassis.moveToPose(20, 15, 90, 4000);
-    pros::lcd::print(4, "pure pursuit finished!");
+    // chassis.moveToPose(20, 15, 90, 4000);
+    // pros::lcd::print(4, "pure pursuit finished!");
 }
 
 
@@ -258,7 +267,7 @@ void opcontrol() {
 	
 
         // get joystick positions
- while (true) {
+ //while (true) {
         // while(1) {
         // // Retrieve the necessary joystick values
         // int leftY = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -270,7 +279,7 @@ void opcontrol() {
         // // Move the right side of the robot 
         // rightSide.move(leftY - rightX);
         // pros::delay(20);
-    }
+    //}
 }
 
 
